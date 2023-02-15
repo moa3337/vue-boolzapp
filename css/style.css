@@ -1,0 +1,69 @@
+body{
+    height: 100vh;
+    background-image: linear-gradient(
+        to bottom,
+        #009688 18vh,
+        #DCDBD1 18vh
+    );
+}
+.row{
+    height: 90vh;
+}
+
+/* PARTE SX*/
+.side-bar{
+    width: 100%;
+}
+.notifica {
+    line-height: 14px;
+}
+.name {
+    font-size: 14px;
+}
+.main-user {
+    background-color: #E9EBEB;
+    cursor: pointer;
+}
+.photo {
+    width: 2.8rem;
+}
+
+/* PARTE DX */
+.col-8{
+    height: 100%;
+    background-image: url(../picture/mine.jpg);
+}
+/* style generale per messagi */
+.message{
+    max-width: 75%;
+    line-height: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+}
+/* messagi ricevuti */
+.recived{
+    align-self: flex-end;
+    background-color: #D8FBD2;
+}
+.text-bar{
+    background-color: #F3EEEA;
+    margin-top: auto;
+}
+small{
+    display: flex;
+    justify-content: end;
+}
+
+/* STYLE GENERICO */
+.scroll{
+    overflow-y: auto;
+}
+.a-link{
+    color: grey;
+    font-size: 11px;
+}
+.icon{
+    text-decoration: none;
+    color: #B1B1B1;
+}
