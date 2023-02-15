@@ -24,6 +24,9 @@ body{
     background-color: #E9EBEB;
     cursor: pointer;
 }
+.users{
+    cursor: pointer;
+}
 .photo {
     width: 2.8rem;
 }
