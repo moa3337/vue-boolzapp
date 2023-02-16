@@ -1,72 +1,87 @@
-body{
+body {
     height: 100vh;
-    background-image: linear-gradient(
-        to bottom,
-        #009688 18vh,
-        #DCDBD1 18vh
-    );
+    background-image: linear-gradient(to bottom,
+            #009688 18vh,
+            #DCDBD1 18vh);
 }
-.row{
+
+.row {
     height: 90vh;
 }
 
 /* PARTE SX*/
-.side-bar{
-    width: 100%;
+.side-bar {
+    height: 0;
 }
+
 .notifica {
     line-height: 14px;
 }
+
 .name {
     font-size: 14px;
 }
+
 .main-user {
+    cursor: pointer;
     background-color: #E9EBEB;
+}
+
+.users {
     cursor: pointer;
 }
-.users{
-    cursor: pointer;
+
+.users:hover {
+    background-color: #E9EBEB;
 }
+
 .photo {
     width: 2.8rem;
 }
 
 /* PARTE DX */
-.col-8{
+.col-8 {
     height: 100%;
     background-image: url(../picture/mine.jpg);
 }
+
 /* style generale per messagi */
-.message{
+.message {
+    min-width: 10%;
     max-width: 75%;
+    font-size: 14px;
     line-height: 20px;
     border-radius: 5px;
-    font-size: 14px;
     background-color: white;
 }
+
 /* messagi ricevuti */
-.recived{
+.sent {
     align-self: flex-end;
     background-color: #D8FBD2;
 }
-.text-bar{
-    background-color: #F3EEEA;
+
+.text-bar {
     margin-top: auto;
+    background-color: #F3EEEA;
 }
-small{
+
+small {
     display: flex;
     justify-content: end;
 }
 
 /* STYLE GENERICO */
-.scroll{
-    overflow-y: auto;
+.scroll {
+    overflow: auto;
 }
-.a-link{
+
+.a-link {
     color: grey;
     font-size: 11px;
 }
-.icon{
-    text-decoration: none;
+
+.icon {
     color: #B1B1B1;
+    text-decoration: none;
 }

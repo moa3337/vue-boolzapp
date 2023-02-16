@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,28 +9,31 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.global.min.js"></script>
+    <script type="text/javascript" src="./js/data.js" defer></script>
+    <script type="text/javascript" src="./js/main.js" defer></script>
     <title>BoolZapp</title>
 </head>
 
 <body class="d-flex align-items-center">
     <!-- BOX DI BOOLZAP -->
-    <div class="container">
+    <div id="app" class="container app">
         <div class="row g-0">
             <!-- COLONNA SX -->
             <div class="col-4 d-flex flex-column">
                 <!--prima nav-bar alto sx-->
                 <nav class="navbar" style="background-color: #EAEAEA">
                     <div class="container-fluid">
-                        <a class="navbar-brand photo" href="#">
+                        <a class="navbar-brand photo" href="">
                             <img class="w-100 rounded-circle" src="./picture/avatar_io.jpg" alt="">
                             <span class="name fw-semibold">Sofia</span>
-                            <div class="">
-                                <a class="fa-solid fa-circle-notch icon m-1" href="#"></a>
-                                <a class="fa-solid fa-message icon m-1" href="#"></a>
-                                <a class="fa-solid fa-ellipsis-vertical icon m-1" href="#"></a>
+                            <div>
+                                <a class="fa-solid fa-circle-notch icon m-1" href=""></a>
+                                <a class="fa-solid fa-message icon m-1" href=""></a>
+                                <a class="fa-solid fa-ellipsis-vertical icon m-1" href=""></a>
                             </div>
                         </a>
                     </div>
@@ -37,7 +41,8 @@
                 <!--box per l'allert dei messagi-->
                 <nav class="navbar" style="background-color: #8EDAFC;">
                     <div class="container-fluid d-flex justify-content-starts">
-                        <a style="font-size:20px" class="fa bg-light text-primary rounded-circle icon p-2 me-2">&#xf1f6;</a>
+                        <a style="font-size:20px"
+                            class="fa bg-light text-primary rounded-circle icon p-2 me-2">&#xf1f6;</a>
                         <span class="fw-semibold me-auto notifica">
                             Ricevi notifiche di nuovi messagi<br>
                             <a class="a-link" href="">Attiva notifiche desktop</a>
@@ -46,27 +51,24 @@
                 </nav>
                 <!--search-bar per cercare le chat-->
                 <div class="p-1 bg-light">
-                    <input type="search" class="form-control border-1" placeholder="Cerca o inizia nuova chat">
+                    <input type="search" class="border w-100 p-1" placeholder="Cerca o inizia nuova chat"
+                        v-for="contactIndex.length">
                 </div>
                 <!--lista dei contatti-->
                 <div class="side-bar scroll flex-grow-1 bg-light">
-                    <div class="main-user d-flex p-2">
+
+                    <div class="main-user d-flex p-2" v-for="contact in contacts"
+                        :class="contactIndex == activeContact ? 'contact--active' : ''"
+                        @click="activeContact == contactIndex">
                         <div class="photo me-3">
-                            <img class="w-100 rounded-circle" src="./picture/avatar_1.jpg" alt="">
+                            <img class="w-100 rounded-circle" :src="'./picture/avatar' + contact.avatar + '.jpg' "
+                                alt="">
                         </div>
                         <span class="fw-semibold me-auto notifica">
-                            Michle<br>
-                            <a class="a-link" href="">Ultimo messagio inviato</a>
-                        </span>
-                        <span class="a-link ms-auto">12:36</span>
-                    </div>
-                    <div class="users d-flex p-2">
-                        <div class="photo me-3">
-                            <img class="w-100 rounded-circle" src="./picture/avatar_2.jpg" alt="">
-                        </div>
-                        <span class="fw-semibold me-auto notifica">
-                            Michle<br>
-                            <a class="a-link" href="">Ultimo messagio inviato</a>
+                            {{ contact.name }}<br>
+                            <small class="a-link icon" v-if="contact.messages.length">
+                                {{ contact.messages[ contact.messages.length -1 ].message }}
+                            </small>
                         </span>
                         <span class="a-link ms-auto">12:36</span>
                     </div>
@@ -78,56 +80,50 @@
                 <!--nav-bar alto dx-->
                 <nav class="navbar border-start" style="background-color: #EAEAEA">
                     <div class="container-fluid">
-                        <a class="navbar-brand photo" href="#">
-                            <img class="w-100 rounded-circle" src="./picture/avatar_1.jpg" alt="">
+                        <a class="navbar-brand photo" href="">
+                            <img class="w-100 rounded-circle"
+                                :src="'./picture/avatar' + contacts[activeContact].avatar + '.jpg'" alt="">
                         </a>
                         <span class="fw-semibold me-auto notifica">
-                            Michele<br>
-                            <a class="a-link" href="">Ultimo acceso oggi alle 13:53</a>
+                            {{ contacts[activeContact].name }}<br>
+                            <small class="a-link">Ultimo accesso oggi alle 09:13</small>
                         </span>
-                        <a class="fa-solid fa-magnifying-glass icon m-2" href="#"></a>
-                        <a class="fa-solid fa-paperclip icon m-2" href="#"></a>
-                        <a class="fa-solid fa-ellipsis-vertical icon m-2" href="#"></a>
+                        <a class="fa-solid fa-magnifying-glass icon m-2" href=""></a>
+                        <a class="fa-solid fa-paperclip icon m-2" href=""></a>
+                        <a class="fa-solid fa-ellipsis-vertical icon m-2" href=""></a>
                     </div>
                 </nav>
                 <!-- AREA CHAT centrale -->
-                <div class="chat-area scroll d-flex flex-column">
-                    <!-- messagi spediti -->
-                    <div class="message sent m-3 p-2">
+                <div class="chat-area scroll d-flex flex-grow-1 align-items-start flex-column">
+                    <!-- messagi ricevuti -->
+                    <div v-for="message in contacts[activeContact].messages" class="message recived m-3 p-2"
+                        :class="message.status">
                         <p class="p-0 m-0">
-                            Hai portato a spasso il cane?Hai portato a spasso il cane?Hai
-                            portato a spasso il cane?Hai portato a spasso il cane? Hai portato
-                            a spasso il cane?Hai portato a spasso il cane?
+                            {{ message.message }}
                         </p>
                         <!--ora del messagio-->
-                        <small class="a-link ms-auto">12:50</small>
+                        <small class="a-link ms-auto">{{ message.date }}</small>
                     </div>
-                    <!--messagi ricevuti-->
-                    <div class="message recived m-3 p-2">
-                        <p class="p-0 m-0">
-                            Hai portato a spasso il cane?Hai portato a spasso il cane?Hai
-                            portato a spasso il cane?Hai portato a spasso il cane? Hai portato
-                            a spasso il cane?Hai portato a spasso il cane?Hai portato a spasso
-                            il cane?
-                        </p>
+                    <!--messagi spedidi-->
+                    <div class="message sent m-3 p-2">
+                        <p class="p-0 m-0"></p>
                         <!--ora del messagio-->
-                        <small class="a-link ms-auto">12:50</small>
-                    </div> 
+                        <small class="a-link ms-auto"></small>
+                    </div>
                 </div>
 
                 <!-- AREA PER SCRIVERE IL MESSAGIO -->
                 <div class="text-bar">
                     <div class="d-flex justify-content-evenly align-items-center p-2">
-                        <a class="fa-regular fa-face-smile icon" href="#"></a>
-                        <input type="search" class="form-control border-1 w-75 p-2">       
-                        <a class="fa-solid fa-microphone icon" href="#"></a>
+                        <a class="fa-regular fa-face-smile icon" href=""></a>
+                        <input @keyUp.enter="sendMessage()" type="search" class="form-control border-1 w-75 p-2"
+                            v-model="newMessage.message">
+                        <a class="fa-solid fa-microphone icon" href=""></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script type="text/javascript" src=""></script>
 </body>
+
 </html>
