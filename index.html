@@ -52,14 +52,13 @@
                 <!--search-bar per cercare le chat-->
                 <div class="p-1 bg-light">
                     <input type="search" class="border w-100 p-1" placeholder="Cerca o inizia nuova chat"
-                        v-for="contactIndex.length">
+                        v-model="search">
                 </div>
                 <!--lista dei contatti-->
                 <div class="side-bar scroll flex-grow-1 bg-light">
-
-                    <div class="main-user d-flex p-2" v-for="contact in contacts"
+                    <div class="main-user d-flex p-2" v-for="(contact, contactIndex) in contacts"
                         :class="contactIndex == activeContact ? 'contact--active' : ''"
-                        @click="activeContact == contactIndex">
+                        @click="activeContact = contactIndex" v-for="value in contactIndex">
                         <div class="photo me-3">
                             <img class="w-100 rounded-circle" :src="'./picture/avatar' + contact.avatar + '.jpg' "
                                 alt="">
